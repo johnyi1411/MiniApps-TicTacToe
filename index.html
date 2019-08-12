@@ -3,6 +3,12 @@
     <head>
         <title>Tic-Tac-Toe</title>
         <style>
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
             .row {
                 display: flex;
             }
@@ -15,25 +21,40 @@
                 align-items: center;
                 justify-content: center;
             }
+
+            #winner {
+                height: 25px;
+            }
+
+            #boardoptions {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
         </style>
     </head>
     <body>
-        <div class="row">
-            <div class="square" id="0">1</div>
-            <div class="square" id="1">2</div>
-            <div class="square" id="2">3</div>
+        <div>
+            <div class="row">
+                <div class="square" id="0"></div>
+                <div class="square" id="1"></div>
+                <div class="square" id="2"></div>
+            </div>
+            <div class="row">
+                <div class="square" id="3"></div>
+                <div class="square" id="4"></div>
+                <div class="square" id="5"></div>
+            </div>
+            <div class="row">
+                <div class="square" id="6"></div>
+                <div class="square" id="7"></div>
+                <div class="square" id="8"></div>
+            </div>
+            <div id="boardoptions">
+                <div id="winner"></div>
+                <button id="clear">Play Again</button>
+            </div>
         </div>
-        <div class="row">
-            <div class="square" id="3"></div>
-            <div class="square" id="4"></div>
-            <div class="square" id="5"></div>
-        </div>
-        <div class="row">
-            <div class="square" id="6"></div>
-            <div class="square" id="7"></div>
-            <div class="square" id="8"></div>
-        </div>
-        <div class="winner"></div>
     </body>
     <script src="app.js"></script>
     </html>
