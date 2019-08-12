@@ -11,7 +11,7 @@ var takeSquare = (id, player) => {
 };
 
 document.addEventListener('click', (event) => {
-  if (gameOn) {
+  if (gameOn && event.path[0].id.length === 1) {
     let square = event.path[0].id;
     if (board[square]) {
       console.log('square taken');
@@ -21,10 +21,10 @@ document.addEventListener('click', (event) => {
       currentPlayer === 'X' ? currentPlayer = 'O' : currentPlayer = 'X';
       checkWinner();
     }
-  } else if (event.path[0].id === 'clear') {
+  } else if (!gameOn && event.path[0].id === 'clear') {
+    console.log('clear button pressed');
     gameOn = true;
     board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    currentPlayer = 'X';
     for (let i = 0; i < 9; i++) {
       document.getElementById(i).innerHTML = '';
     }
@@ -37,6 +37,7 @@ var checkWinner = () => {
   for (let row = 0; row < 3; row++) {
     if (board[0 + (row * 3)] === board[1 + (row * 3)] && board[1 + (row * 3)] === board[2 + (row * 3)] && board[0 + (row * 3)] !== 0) {
       gameOn = false;
+      currentPlayer = board[0 + (row * 3)];
       document.getElementById('winner').innerHTML = `Winner! Player ${board[0 + (row * 3)]}`;
       return;
     }
@@ -45,6 +46,7 @@ var checkWinner = () => {
   for (let column = 0; column < 3; column++) {
     if (board[0 + column] === board[3 + column] && board[0 + column] === board[6 + column] && board[0 + column] !== 0) {
       gameOn = false;
+      currentPlayer = board[0 + column];
       document.getElementById('winner').innerHTML = `Winner! Player ${board[0 + column]}`;
       return;
     }
@@ -53,12 +55,14 @@ var checkWinner = () => {
   if (board[0] === board[4] && board[4]) {
     if (board[4] === board[8]) {
       gameOn = false;
+      currentPlayer = board[4];
       document.getElementById('winner').innerHTML = `Winner! Player ${board[4]}`;
       return;
     }
   } else if (board[2] === board[4] && board[4]) {
     if (board[4] === board[6]) {
       gameOn = false;
+      currentPlayer = board[4];
       document.getElementById('winner').innerHTML = `Winner! Player ${board[4]}`;
       return;
     }
@@ -71,6 +75,7 @@ var checkWinner = () => {
     }
   }
   gameOn = false;
+  currentPlayer = 'X';
   document.getElementById('winner').innerHTML = `Tie!`;
   checkBoard();
 };
