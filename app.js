@@ -19,7 +19,6 @@ document.addEventListener('click', (event) => {
       board[square] = currentPlayer;
       takeSquare(square, currentPlayer);
       currentPlayer === 'X' ? currentPlayer = 'O' : currentPlayer = 'X';
-      console.log(board);
       checkWinner();
     }
   } else if (event.path[0].id === 'clear') {
